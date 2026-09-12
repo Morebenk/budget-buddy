@@ -3,256 +3,432 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Budget Buddy — split the cost of family plans</title>
-<meta name="description" content="Find people to split Spotify Family, Netflix, YouTube Premium, VPNs and more. Plan holders invite you on as a member — logins and passwords never change hands.">
+<title>Budget Buddy — split the cost of streaming, music and VPN plans</title>
+<meta name="description" content="A Netflix Premium plan covers four people and costs the same as one. Find people to split streaming, music, VPN and gaming plans with. Free, direct, no fees.">
 <link rel="canonical" href="https://morebenk.github.io/budget-buddy/">
-<meta property="og:title" content="Budget Buddy — split the cost of family plans">
-<meta property="og:description" content="Find people to split subscription costs. Real family plan seats, no credential sharing.">
+<meta property="og:title" content="Budget Buddy — split the plans built to be shared">
+<meta property="og:description" content="Paying for six subscriptions alone costs $977 a year more than splitting them. Find people to split with. Free, direct, no fees.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#17101B">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐖</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
 :root{
-  --plum:#17101B; --plum-2:#211829; --plum-3:#2C2136;
-  --ink:#F4EDF3; --ink-2:#B9A9BE; --ink-3:#8A7A91;
-  --pink:#FF7FA8; --pink-deep:#E0578A; --gold:#FFD166;
-  --rule:#33263D; --ok:#6FD39B;
-  --wrap:1040px;
+  --plum:#140E18; --plum-2:#1E1524; --plum-3:#2A1E32; --plum-4:#372745;
+  --ink:#F6F0F5; --ink-2:#BCACC2; --ink-3:#8D7E95;
+  --pink:#FF7FA8; --pink-2:#FFA5C2; --pink-deep:#D84E82;
+  --gold:#FFD166; --mint:#7FE0B0;
+  --rule:#2E2138; --rule-2:#3E2D4A;
+  --wrap:1080px;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
 body{
-  margin:0; background:var(--plum); color:var(--ink);
+  margin:0; color:var(--ink);
+  background:
+    radial-gradient(1100px 620px at 18% -8%, #331E33 0%, transparent 62%),
+    radial-gradient(900px 520px at 92% 4%, #241A38 0%, transparent 58%),
+    var(--plum);
   font-family:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
-  padding-inline:22px;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+  padding-inline:22px; overflow-x:hidden;
 }
 .wrap{max-width:var(--wrap); margin-inline:auto}
 a{color:var(--pink)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* ---------- nav ---------- */
+nav{display:flex; align-items:center; gap:12px; padding-block:26px}
+nav svg{width:34px;height:34px;flex:none}
+nav b{font-weight:700; letter-spacing:-.01em; font-size:1.04rem}
+nav .spacer{flex:1}
+nav a.top{
+  font-size:.92rem; font-weight:600; color:var(--ink-2); text-decoration:none;
+  padding:8px 16px; border:1px solid var(--rule-2); border-radius:999px; transition:.15s var(--ease);
+}
+nav a.top:hover{color:var(--ink); border-color:var(--pink); background:var(--plum-2)}
 
 /* ---------- hero ---------- */
-header{padding-block:72px 52px; border-bottom:1px solid var(--rule)}
-.mark{display:flex; align-items:center; gap:12px; margin-bottom:34px}
-.mark svg{width:38px;height:38px;flex:none}
-.mark b{font-family:Figtree;font-weight:700;letter-spacing:-.01em;font-size:1.06rem}
+header{padding-block:34px 60px}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px; margin-bottom:22px;
+  font-size:.8rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--pink-2); background:rgba(255,127,168,.09);
+  border:1px solid rgba(255,127,168,.24); padding:7px 14px; border-radius:999px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px rgba(127,224,176,.18)}
 h1{
   font-family:Fraunces,Georgia,serif; font-weight:600;
-  font-size:clamp(2.5rem,6.4vw,4.2rem); line-height:1.04; letter-spacing:-.02em;
-  margin:0 0 20px; text-wrap:balance; max-width:15ch;
+  font-size:clamp(2.6rem,6.6vw,4.6rem); line-height:1.02; letter-spacing:-.025em;
+  margin:0 0 22px; text-wrap:balance; max-width:19ch;
 }
 h1 em{font-style:italic; color:var(--pink)}
-.lede{font-size:1.19rem; color:var(--ink-2); max-width:56ch; margin:0 0 32px; text-wrap:pretty}
-.cta{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+.lede{font-size:clamp(1.06rem,2.1vw,1.24rem); color:var(--ink-2); max-width:60ch; margin:0 0 34px; text-wrap:pretty}
+.lede b{color:var(--ink); font-weight:600}
+
 .btn{
-  display:inline-block; background:var(--pink); color:#2A0F1B; font-weight:700;
-  padding:13px 26px; border-radius:999px; text-decoration:none; font-size:1rem;
-  transition:transform .12s ease, background .12s ease;
+  display:inline-flex; align-items:center; gap:9px; background:var(--pink); color:#2A0C1A;
+  font-weight:700; padding:15px 30px; border-radius:999px; text-decoration:none; font-size:1.02rem;
+  border:0; cursor:pointer; transition:.16s var(--ease); font-family:inherit;
+  box-shadow:0 10px 30px -12px rgba(255,127,168,.7);
 }
-.btn:hover{background:var(--gold); transform:translateY(-1px)}
+.btn:hover{background:var(--pink-2); transform:translateY(-2px); box-shadow:0 16px 38px -14px rgba(255,127,168,.85)}
 .btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
-.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--rule); font-weight:600}
-.btn.ghost:hover{background:var(--plum-2); border-color:var(--pink)}
-.count{font-family:"JetBrains Mono",monospace; font-size:.86rem; color:var(--ink-3)}
-.count b{color:var(--ink)}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--rule-2); box-shadow:none; font-weight:600}
+.btn.ghost:hover{background:var(--plum-2); border-color:var(--pink); transform:none}
 
-/* ---------- live board ---------- */
-section{padding-block:58px; border-bottom:1px solid var(--rule)}
-h2{
-  font-family:Fraunces,Georgia,serif; font-weight:600; font-size:1.9rem;
-  letter-spacing:-.015em; margin:0 0 8px; text-wrap:balance;
+/* ---------- calculator ---------- */
+.calc{
+  background:linear-gradient(168deg,#241831 0%,#1B1323 62%);
+  border:1px solid var(--rule-2); border-radius:22px; padding:clamp(24px,4vw,40px);
+  box-shadow:0 40px 80px -50px rgba(0,0,0,.9);
 }
-.sub{color:var(--ink-2); margin:0 0 28px; max-width:58ch}
-.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px}
-.svc{
-  background:var(--plum-2); border:1px solid var(--rule); border-radius:12px;
-  padding:16px 16px 14px; display:flex; flex-direction:column; gap:2px;
+.calc h2{font-family:Fraunces,serif; font-weight:600; font-size:1.5rem; margin:0 0 6px; letter-spacing:-.015em}
+.calc .hint{color:var(--ink-3); font-size:.95rem; margin:0 0 22px}
+.chips{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px}
+.chip{
+  display:inline-flex; align-items:baseline; gap:8px; cursor:pointer; user-select:none;
+  background:var(--plum-2); border:1px solid var(--rule-2); color:var(--ink-2);
+  padding:11px 17px; border-radius:12px; font-size:.95rem; font-weight:600;
+  transition:.14s var(--ease); font-family:inherit;
 }
-.svc.has{border-color:var(--pink-deep); background:linear-gradient(180deg,#2B1A26,#211829)}
-.svc .n{font-weight:600; font-size:.96rem}
-.svc .v{font-family:"JetBrains Mono",monospace; font-size:1.5rem; line-height:1.2; color:var(--ink-3)}
-.svc.has .v{color:var(--pink)}
-.svc .m{font-size:.78rem; color:var(--ink-3)}
-.empty{
-  border:1px dashed var(--rule); border-radius:14px; padding:30px 26px;
-  background:var(--plum-2); text-align:center;
+.chip:hover{border-color:var(--pink-deep); color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.chip .save{font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--ink-3); font-weight:400}
+.chip[aria-pressed="true"]{
+  background:linear-gradient(180deg,#3B2138,#2B1829); border-color:var(--pink); color:var(--ink);
 }
-.empty p{margin:0 0 6px; color:var(--ink-2)}
-.empty .big{font-family:Fraunces,serif; font-size:1.35rem; color:var(--ink); margin-bottom:10px}
+.chip[aria-pressed="true"] .save{color:var(--pink-2)}
 
-/* ---------- steps ---------- */
-ol.steps{list-style:none; counter-reset:s; margin:0; padding:0; display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-ol.steps li{counter-increment:s; position:relative; padding-top:40px}
+.readout{display:grid; grid-template-columns:1.15fr 1fr; gap:26px; align-items:end; padding-top:26px; border-top:1px solid var(--rule)}
+.big{font-family:Fraunces,serif; font-weight:700; font-size:clamp(3rem,9vw,5rem); line-height:.94; letter-spacing:-.03em; color:var(--gold); font-variant-numeric:tabular-nums}
+.big small{font-size:.32em; color:var(--ink-3); font-weight:400; font-family:Figtree; letter-spacing:0; display:block; margin-top:10px}
+.split{font-size:.95rem; color:var(--ink-2)}
+.split table{width:100%; border-collapse:collapse; font-size:.9rem}
+.split td{padding:5px 0; border-bottom:1px dashed var(--rule)}
+.split td:last-child{text-align:right; font-family:"JetBrains Mono",monospace; color:var(--ink)}
+.split tr:last-child td{border-bottom:0; padding-top:11px; font-weight:700; color:var(--ink)}
+.calc .go{margin-top:26px; display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+.calc .fine{font-size:.8rem; color:var(--ink-3); margin:18px 0 0}
+
+/* ---------- sections ---------- */
+section{padding-block:72px; border-top:1px solid var(--rule)}
+h2.sec{font-family:Fraunces,serif; font-weight:600; font-size:clamp(1.7rem,3.4vw,2.2rem); letter-spacing:-.02em; margin:0 0 10px; text-wrap:balance}
+p.sub{color:var(--ink-2); margin:0 0 34px; max-width:60ch; font-size:1.04rem}
+
+/* comparison */
+.vs{width:100%; border-collapse:collapse; font-size:.96rem}
+.vs th,.vs td{padding:15px 16px; text-align:left; border-bottom:1px solid var(--rule)}
+.vs th{font-size:.76rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+.vs td:first-child{font-weight:600}
+.vs .us{background:rgba(255,127,168,.07)}
+.vs .us td{color:var(--ink)}
+.vs .yes{color:var(--mint); font-weight:700}
+.vs .no{color:var(--ink-3)}
+.vs-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:14px; background:var(--plum-2)}
+.vs-wrap table{min-width:540px}
+
+/* steps */
+ol.steps{list-style:none; counter-reset:s; margin:0; padding:0; display:grid; gap:26px; grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+ol.steps li{counter-increment:s; position:relative; padding-top:46px}
 ol.steps li::before{
-  content:counter(s); position:absolute; top:0; left:0;
-  font-family:"JetBrains Mono",monospace; font-size:.8rem; font-weight:500;
-  width:28px;height:28px; border-radius:50%; display:grid; place-items:center;
-  background:var(--plum-3); color:var(--pink); border:1px solid var(--rule);
+  content:"0" counter(s); position:absolute; top:0; left:0;
+  font-family:"JetBrains Mono",monospace; font-size:.82rem; font-weight:700; color:var(--pink);
 }
-ol.steps b{display:block; margin-bottom:4px; font-size:1.02rem}
-ol.steps span{color:var(--ink-2); font-size:.95rem}
+ol.steps li::after{content:""; position:absolute; top:26px; left:0; width:26px; height:1px; background:var(--pink-deep)}
+ol.steps b{display:block; margin-bottom:5px; font-size:1.06rem}
+ol.steps span{color:var(--ink-2); font-size:.96rem}
 
-/* ---------- rule ---------- */
-.rule-box{border-left:3px solid var(--gold); background:var(--plum-2); border-radius:0 12px 12px 0; padding:22px 24px}
-.rule-box h3{margin:0 0 8px; font-size:1.05rem; color:var(--gold); font-weight:700}
-.rule-box p{margin:0 0 10px; color:var(--ink-2)}
-.rule-box p:last-child{margin:0}
-.rule-box strong{color:var(--ink)}
+/* safety */
+.safe{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.card{background:var(--plum-2); border:1px solid var(--rule); border-radius:16px; padding:24px}
+.card.good{border-color:rgba(127,224,176,.3)}
+.card.bad{border-color:rgba(255,127,168,.22)}
+.card h3{margin:0 0 12px; font-size:1rem; font-weight:700; display:flex; align-items:center; gap:9px}
+.card.good h3{color:var(--mint)} .card.bad h3{color:var(--pink)}
+.card ul{margin:0; padding-left:19px; color:var(--ink-2); font-size:.96rem}
+.card li{margin-block:7px}
 
-footer{padding-block:34px 60px; color:var(--ink-3); font-size:.86rem; display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center}
-footer .mono{font-family:"JetBrains Mono",monospace}
+/* board */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:12px}
+.svc{background:var(--plum-2); border:1px solid var(--rule); border-radius:13px; padding:16px; display:flex; flex-direction:column; gap:2px}
+.svc.has{border-color:var(--pink-deep); background:linear-gradient(180deg,#301C2B,#211829)}
+.svc .v{font-family:"JetBrains Mono",monospace; font-size:1.6rem; line-height:1.15; color:var(--ink-3)}
+.svc.has .v{color:var(--pink)}
+.svc .n{font-weight:600; font-size:.95rem}
+.svc .m{font-size:.78rem; color:var(--ink-3)}
+.empty{border:1px dashed var(--rule-2); border-radius:16px; padding:34px 26px; background:var(--plum-2); text-align:center}
+.empty .big2{font-family:Fraunces,serif; font-size:1.4rem; margin-bottom:10px; color:var(--ink)}
+.empty p{margin:0 0 8px; color:var(--ink-2); max-width:52ch; margin-inline:auto}
 
-@media (max-width:560px){
-  header{padding-block:48px 40px}
-  section{padding-block:44px}
+/* faq */
+details{border-bottom:1px solid var(--rule); padding:18px 0}
+details summary{cursor:pointer; font-weight:600; font-size:1.04rem; list-style:none; display:flex; justify-content:space-between; gap:18px; align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+"; color:var(--pink); font-family:"JetBrains Mono",monospace; font-size:1.25rem; flex:none}
+details[open] summary::after{content:"–"}
+details p{margin:12px 0 0; color:var(--ink-2); max-width:68ch}
+
+/* cta band */
+.band{text-align:center; padding-block:84px}
+.band h2{font-family:Fraunces,serif; font-weight:600; font-size:clamp(1.9rem,4.6vw,2.9rem); letter-spacing:-.02em; margin:0 0 14px; text-wrap:balance}
+.band p{color:var(--ink-2); max-width:50ch; margin:0 auto 30px}
+
+footer{padding-block:34px 64px; border-top:1px solid var(--rule); color:var(--ink-3); font-size:.85rem; display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center}
+
+@media (max-width:760px){
+  .readout{grid-template-columns:1fr; gap:20px}
+  .safe{grid-template-columns:1fr}
+  section{padding-block:56px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important; scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
-<header>
-  <div class="mark">
-    <svg viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="48" fill="#241826"/>
-      <path d="M50 8a42 42 0 0 1 36.4 21L64.6 41.6A17 17 0 0 0 50 33z" fill="#FF7FA8"/>
-      <path d="M86.4 29a42 42 0 0 1 0 42L64.6 58.4a17 17 0 0 0 0-16.8z" fill="#6B4759"/>
-      <path d="M86.4 71A42 42 0 0 1 50 92V67a17 17 0 0 0 14.6-8.6z" fill="#6B4759"/>
-      <path d="M50 92A42 42 0 0 1 13.6 29L35.4 41.6a17 17 0 0 0 0 16.8L13.6 71A42 42 0 0 0 50 92z" fill="#6B4759"/>
-      <circle cx="50" cy="50" r="9" fill="#FFD166"/>
-    </svg>
-    <b>Budget Buddy</b>
-  </div>
+<nav>
+  <svg viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="48" fill="#241826"/>
+    <path d="M50 8a42 42 0 0 1 36.4 21L64.6 41.6A17 17 0 0 0 50 33z" fill="#FF7FA8"/>
+    <path d="M86.4 29a42 42 0 0 1 0 42L64.6 58.4a17 17 0 0 0 0-16.8z" fill="#6B4759"/>
+    <path d="M86.4 71A42 42 0 0 1 50 92V67a17 17 0 0 0 14.6-8.6z" fill="#6B4759"/>
+    <path d="M50 92A42 42 0 0 1 13.6 29L35.4 41.6a17 17 0 0 0 0 16.8L13.6 71A42 42 0 0 0 50 92z" fill="#6B4759"/>
+    <circle cx="50" cy="50" r="9" fill="#FFD166"/>
+  </svg>
+  <b>Budget Buddy</b>
+  <span class="spacer"></span>
+  <a class="top" href="#how">How it works</a>
+</nav>
 
-  <h1>Pay a <em>share</em>, not the whole subscription.</h1>
+<header>
+  <span class="eyebrow"><span class="dot"></span><span id="pill">A free Discord community</span></span>
+  <h1>Stop paying full price for plans <em>built to be shared</em>.</h1>
   <p class="lede">
-    A small Discord community for finding people to split family and duo plans with —
-    Spotify, Netflix, YouTube, VPNs and more. The plan holder invites you on as a
-    member. Logins and passwords never change hands.
+    A Netflix Premium plan covers <b>four people at once</b> and costs the same as one.
+    Spotify Family is <b>six accounts for $21.99</b>. The seats are already in the price —
+    most people just have nobody to fill them. This is where you find them.
+    No fees, no middleman, no cut.
   </p>
-  <div class="cta">
-    <a class="btn" href="https://discord.gg/5JdbxDpfhJ" id="join">Join the Discord</a>
-    <a class="btn ghost" href="#how">How it works</a>
-    <span class="count" id="headline">Loading the board…</span>
+
+  <div class="calc">
+    <h2>What are you overpaying for?</h2>
+    <p class="hint">Tap the ones you pay for on your own.</p>
+
+    <div class="chips" id="chips" role="group" aria-label="Services you pay for"></div>
+
+    <div class="readout">
+      <div>
+        <div class="big" id="total">$0<small id="totalLabel">Select a service to see the difference</small></div>
+      </div>
+      <div class="split">
+        <table id="breakdown"><tbody></tbody></table>
+      </div>
+    </div>
+
+    <div class="go">
+      <a class="btn" href="https://discord.gg/5JdbxDpfhJ">Find people to split with →</a>
+      <span class="mono" style="font-size:.84rem;color:var(--ink-3)" id="members">&nbsp;</span>
+    </div>
+    <p class="fine">US list prices, checked September 2026. A share is the plan price divided by how many people it covers — accounts on a family plan, simultaneous streams on a streaming tier. Your local prices will differ.</p>
   </div>
 </header>
 
 <section>
-  <h2>Open right now</h2>
-  <p class="sub">Straight from the server's listings board, refreshed automatically. No names or prices here — those stay inside the community.</p>
-  <div id="board"><div class="empty"><p>Loading…</p></div></div>
+  <h2 class="sec">Why it's free here</h2>
+  <p class="sub">The paid platforms take a cut from both sides, or buy accounts in bulk and resell you a seat. This is neither. It's people finding each other and splitting a bill.</p>
+  <div class="vs-wrap">
+    <table class="vs">
+      <thead><tr><th>&nbsp;</th><th>Fee to join a split</th><th>Fee to offer one</th><th>Who holds the plan</th></tr></thead>
+      <tbody>
+        <tr class="us"><td>Budget Buddy</td><td class="yes">Free</td><td class="yes">Free</td><td>You and the people you split with</td></tr>
+        <tr><td>Spliiit</td><td class="no">5% + €0.99 / month</td><td class="no">25% of each subscriber</td><td>A member, via the platform</td></tr>
+        <tr><td>GamsGo</td><td class="no">Built into the price</td><td class="no">n/a — you can't offer</td><td>The company, bought in bulk</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="how">
-  <h2>How it works</h2>
+  <h2 class="sec">How it works</h2>
+  <p class="sub">Four steps, and the whole thing happens between you and the person you split with.</p>
   <ol class="steps">
-    <li><b>Say what you want to split</b><span>Introduce yourself and pick the services you care about. You get pinged when a seat opens.</span></li>
+    <li><b>Say what you want</b><span>Pick your services when you join. You get pinged the moment a seat opens on one of them.</span></li>
     <li><b>Browse the board</b><span>Every offer and request is one tagged post. Filter by service, or by what's still open.</span></li>
-    <li><b>Agree before money moves</b><span>Price per seat, renewal date, payment method. Check the other person's vouches first.</span></li>
-    <li><b>Vouch afterwards</b><span>Once a split has run a month, say so. That record is the only trust this community has.</span></li>
+    <li><b>Agree the details</b><span>Price per seat, renewal date, how you'll pay. Check their vouches before any money moves.</span></li>
+    <li><b>Vouch afterwards</b><span>After a month, say how it went. That record is what makes the next split safe for someone else.</span></li>
   </ol>
 </section>
 
 <section>
-  <h2>The one rule that matters</h2>
-  <div class="rule-box">
-    <h3>We split plans. We never share logins.</h3>
-    <p>
-      A legitimate family or duo plan lets the holder <strong>invite you on as a member</strong>.
-      You get your own login, your own profile, your own library. Nobody hands over a password.
-    </p>
-    <p>
-      If someone asks for your password, or offers to sell you theirs, they are not splitting a
-      plan with you — they are handing over access to an account that holds their payment method
-      and personal data, or asking you to do the same. That is against our rules and it gets you
-      removed.
-    </p>
+  <h2 class="sec">Splitting without getting burned</h2>
+  <p class="sub">How you and your group run the plan is between you. These are the things people wish they'd done before the first payment — not rules, just what goes wrong when nobody agrees it up front.</p>
+  <div class="safe">
+    <div class="card good">
+      <h3>✓ Worth sorting first</h3>
+      <ul>
+        <li>Turn on <strong>2FA</strong> on the account — without it, anyone in the group can reset the password and lock everyone else out</li>
+        <li>Use a password that isn't reused anywhere else</li>
+        <li>Agree who holds the plan, what each person pays and <strong>when it renews</strong></li>
+        <li>Start with one month. Run it once before committing to a year</li>
+        <li>Check their vouches — nobody can vouch for a split that hasn't actually run</li>
+      </ul>
+    </div>
+    <div class="card bad">
+      <h3>✗ Not what this place is for</h3>
+      <ul>
+        <li><strong>Buying or selling accounts.</strong> This is people splitting a bill, not a shop</li>
+        <li>Reselling seats at a markup, bulk accounts, "lifetime" offers</li>
+        <li>Shop links and invites to other servers</li>
+        <li>Asking anyone for identity documents</li>
+      </ul>
+    </div>
   </div>
 </section>
+
+<section>
+  <h2 class="sec">Open on the board right now</h2>
+  <p class="sub">Straight from the community, refreshed automatically. Counts only — names, prices and regions stay inside.</p>
+  <div id="board"><div class="empty"><p>Loading…</p></div></div>
+</section>
+
+<section>
+  <h2 class="sec">Questions people actually ask</h2>
+  <details><summary>How does a split actually work?</summary><p>One person holds the plan and pays the provider. Everyone else pays them their share. How you run it — who holds it, how people get access, how you collect the money — is for your group to agree between yourselves. Different services work differently, so there's no single answer that fits all of them.</p></details>
+  <details><summary>How do I know I won't get scammed?</summary><p>You don't, on day one — which is exactly why vouches exist. Nobody can vouch for a split that hasn't actually run for a month, so the record builds slowly and honestly. Check it before you send anyone money, agree the renewal date up front, and start with one month rather than a year.</p></details>
+  <details><summary>Do you take a cut?</summary><p>No. There's no fee to join, no fee to offer a seat, and no payment passes through us. You arrange everything directly with the people you split with. That's the whole reason this is a Discord community and not a business.</p></details>
+  <details><summary>What if I just want to lurk?</summary><p>Fine. Join, pick the services you care about, and you'll get pinged when a seat opens on one of them. Plenty of people sit quietly until the right plan shows up.</p></details>
+  <details><summary>Which services can I split?</summary><p>Music, streaming, VPNs, gaming and AI tools — around fourteen categories on the board, plus an <em>Other</em> tag for anything that doesn't fit. The busiest are Spotify, ExpressVPN and Netflix.</p></details>
+</section>
+
+<div class="band">
+  <h2>It costs nothing to look.</h2>
+  <p>Join, say what you're after, and see whether anyone's splitting it. If not, post it — somebody's usually looking for the same thing.</p>
+  <a class="btn" href="https://discord.gg/5JdbxDpfhJ">Join Budget Buddy →</a>
+</div>
 
 <footer>
   <span>Budget Buddy</span>
   <span class="mono" id="updated">—</span>
-  <span class="mono" id="members">—</span>
+  <span>Not affiliated with any of the services named.</span>
 </footer>
 
 </div>
 
 <script>
-const nf = new Intl.NumberFormat();
+/* Real US list prices, checked Sept 2026.
+   `ways` is how many people one plan actually covers — accounts on a family
+   plan, simultaneous streams on a streaming tier. `solo` is what one person
+   pays for comparable access on their own. */
+const SERVICES = [
+  { id:'netflix', name:'Netflix',        solo:26.99, plan:26.99, ways:4, note:'Premium — 4 streams' },
+  { id:'hbo',     name:'HBO Max',        solo:22.99, plan:22.99, ways:4, note:'Premium — 4 streams' },
+  { id:'disney',  name:'Disney+',        solo:19.99, plan:19.99, ways:4, note:'Premium — 4 streams' },
+  { id:'youtube', name:'YouTube Premium',solo:15.99, plan:26.99, ways:6, note:'Family — 6 accounts' },
+  { id:'spotify', name:'Spotify',        solo:12.99, plan:21.99, ways:6, note:'Family — 6 accounts' },
+  { id:'apple',   name:'Apple Music',    solo:10.99, plan:16.99, ways:6, note:'Family — 6 accounts' },
+];
+const seatCost = s => s.plan / s.ways;
+const monthly  = s => s.solo - seatCost(s);
 
-// Fail loudly rather than shipping a dead "Join" button if the invite was never set.
-(function guardInvite() {
-  const a = document.getElementById('join');
-  if (a.getAttribute('href') !== 'INVITE_URL') return;
-  a.removeAttribute('href');
-  a.textContent = 'Invite link not set yet';
-  a.style.cssText += 'background:#3A2B44;color:#B9A9BE;cursor:not-allowed';
-})();
+const money = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits:0, maximumFractionDigits:0 });
+const money2 = n => '$' + n.toFixed(2);
+const picked = new Set();
 
+const chips = document.getElementById('chips');
+chips.innerHTML = SERVICES.map(s =>
+  `<button class="chip" type="button" aria-pressed="false" data-id="${s.id}">
+     ${s.name} <span class="save">save ${money2(monthly(s))}/mo</span>
+   </button>`).join('');
+
+chips.addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  const id = b.dataset.id;
+  picked.has(id) ? picked.delete(id) : picked.add(id);
+  b.setAttribute('aria-pressed', picked.has(id));
+  update();
+});
+
+let raf = null;
+function update() {
+  const chosen = SERVICES.filter(s => picked.has(s.id));
+  const yearly = chosen.reduce((n, s) => n + monthly(s) * 12, 0);
+
+  const body = document.querySelector('#breakdown tbody');
+  body.innerHTML = chosen.length
+    ? chosen.map(s =>
+        `<tr><td>${s.name} <span style="color:var(--ink-3)">— ${s.note}</span></td>
+             <td>${money2(s.solo)} → ${money2(seatCost(s))}</td></tr>`).join('')
+      + `<tr><td>A year of paying alone</td><td>${money2(chosen.reduce((n,s)=>n+s.solo*12,0))}</td></tr>`
+    : `<tr><td style="color:var(--ink-3);border:0">Netflix Premium covers four people for $26.99.<br>That's $6.75 each, against $26.99 alone.</td></tr>`;
+
+  const label = document.getElementById('totalLabel');
+  label.textContent = chosen.length
+    ? `saved every year, across ${chosen.length} ${chosen.length === 1 ? 'service' : 'services'}`
+    : 'Select a service to see the difference';
+
+  countTo(yearly);
+}
+
+/* Count the headline number up — it makes the size of the number land. */
+function countTo(target) {
+  const el = document.getElementById('total');
+  const from = Number(el.dataset.v || 0);
+  const start = performance.now(), dur = 520;
+  if (raf) cancelAnimationFrame(raf);
+  const step = now => {
+    const t = Math.min(1, (now - start) / dur);
+    const v = from + (target - from) * (1 - Math.pow(1 - t, 3));
+    el.firstChild.nodeValue = money(v);
+    if (t < 1) raf = requestAnimationFrame(step); else el.dataset.v = target;
+  };
+  raf = requestAnimationFrame(step);
+}
+update();
+
+/* ---- live board ---- */
 fetch('slots.json?' + Date.now())
-  .then(r => r.ok ? r.json() : Promise.reject(r.status))
-  .then(render)
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(d => {
+    if (d.server?.members) {
+      document.getElementById('members').textContent = d.server.members + ' members';
+      document.getElementById('pill').textContent = `A free Discord community · ${d.server.members} members`;
+    }
+    document.getElementById('updated').textContent =
+      'board updated ' + new Date(d.generated).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+
+    const withSlots = (d.services || []).filter(s => s.offering + s.seeking > 0);
+    const board = document.getElementById('board');
+
+    if (!withSlots.length) {
+      board.innerHTML =
+        `<div class="empty">
+           <div class="big2">Nothing open this minute — which is your opening</div>
+           <p>Listings archive themselves after three quiet days, so the board only ever shows what's genuinely live. Right now that's nothing.</p>
+           <p>Post what you're after and you'll be the first thing ${d.server?.members ?? 'every'} member sees.</p>
+         </div>`;
+      return;
+    }
+    board.className = 'grid';
+    board.innerHTML = withSlots.map(s => {
+      const total = s.offering + s.seeking, parts = [];
+      if (s.offering) parts.push(`${s.offering} offering`);
+      if (s.seeking) parts.push(`${s.seeking} looking`);
+      return `<div class="svc has"><span class="v">${total}</span><span class="n">${esc(s.name)}</span><span class="m">${parts.join(' · ')}</span></div>`;
+    }).join('');
+    const rest = d.services.length - withSlots.length;
+    if (rest > 0) board.insertAdjacentHTML('beforeend',
+      `<div class="svc"><span class="v">${rest}</span><span class="n">more services</span><span class="m">quiet today</span></div>`);
+  })
   .catch(() => {
-    document.getElementById('headline').textContent = '';
     document.getElementById('board').innerHTML =
-      '<div class="empty"><p class="big">The board is having a moment</p><p>Come straight to the Discord and look there instead.</p></div>';
+      `<div class="empty"><div class="big2">The board is having a moment</div><p>Come straight to the Discord and look there instead.</p></div>`;
   });
 
-function render(d) {
-  const open = d.totals.open;
-
-  document.getElementById('headline').innerHTML = open
-    ? `<b>${nf.format(open)}</b> open ${open === 1 ? 'listing' : 'listings'} right now`
-    : `<b>${nf.format(d.server.members ?? 0)}</b> members`;
-
-  const withSlots = d.services.filter(s => s.offering + s.seeking > 0);
-  const board = document.getElementById('board');
-
-  if (!withSlots.length) {
-    board.innerHTML =
-      '<div class="empty">' +
-      '<p class="big">No seats open at this exact moment</p>' +
-      '<p>The board moves — listings archive themselves after three quiet days, so what you see is always current.</p>' +
-      '<p>Join and post what you are after; people get pinged for their services.</p>' +
-      '</div>';
-    return;
-  }
-
-  board.className = 'grid';
-  board.innerHTML = withSlots.map(s => {
-    const total = s.offering + s.seeking;
-    const parts = [];
-    if (s.offering) parts.push(`${s.offering} offering`);
-    if (s.seeking) parts.push(`${s.seeking} looking`);
-    return `<div class="svc has">
-      <span class="v">${total}</span>
-      <span class="n">${escapeHtml(s.name)}</span>
-      <span class="m">${parts.join(' · ')}</span>
-    </div>`;
-  }).join('');
-
-  const rest = d.services.length - withSlots.length;
-  if (rest > 0) {
-    board.insertAdjacentHTML('beforeend',
-      `<div class="svc"><span class="v">${rest}</span><span class="n">more services</span><span class="m">nothing open today</span></div>`);
-  }
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-}
-
-fetch('slots.json?' + Date.now()).then(r => r.json()).then(d => {
-  const t = new Date(d.generated);
-  document.getElementById('updated').textContent =
-    'updated ' + t.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
-  if (d.server.members) document.getElementById('members').textContent = d.server.members + ' members';
-}).catch(() => {});
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 </script>
-
 </body>
 </html>
