@@ -235,7 +235,7 @@ footer{padding-block:30px 60px;border-top:1px solid var(--line);color:var(--ink-
 
 <header>
   <div>
-    <span class="tag"><span class="pulse"></span><span id="pill">A free Discord community</span></span>
+    <span class="tag"><span class="pulse"></span><span id="pill">A free Discord community · since 2023</span></span>
     <h1>Stop paying full price for plans <em>built to be shared</em>.</h1>
     <p class="lede">
       A Netflix Premium plan covers <b>four people at once</b> and costs the same as one.
@@ -244,7 +244,7 @@ footer{padding-block:30px 60px;border-top:1px solid var(--line);color:var(--ink-
     </p>
     <div class="proof">
       <div><span class="k mono">$0</span><span class="l">Fees, either side</span></div>
-      <div><span class="k mono" id="pMembers">59</span><span class="l">Members</span></div>
+      <div><span class="k mono">$977</span><span class="l">A year, all six split</span></div>
       <div><span class="k mono">14</span><span class="l">Services on the board</span></div>
     </div>
   </div>
@@ -423,9 +423,12 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 fetch('slots.json?' + Date.now())
   .then(r => r.ok ? r.json() : Promise.reject())
   .then(d => {
-    if (d.server?.members) {
-      document.getElementById('pMembers').textContent = d.server.members;
-      document.getElementById('pill').textContent = `A free Discord community · ${d.server.members} members`;
+    /* A member count only helps once it's an asset. Below that it's an argument
+       against joining, so the pill stays on the founding year until it isn't. */
+    const BRAG_AT = 250;
+    if (d.server?.members >= BRAG_AT) {
+      document.getElementById('pill').textContent =
+        `A free Discord community · ${d.server.members.toLocaleString('en-US')} members`;
     }
     document.getElementById('updated').textContent =
       'board updated ' + new Date(d.generated).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
