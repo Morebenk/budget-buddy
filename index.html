@@ -42,16 +42,26 @@ a{color:var(--accent-ink)}
 svg.i{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- nav ---------- */
-nav{display:flex;align-items:center;gap:11px;padding-block:22px}
-nav .logo{width:34px;height:34px;flex:none}
-nav b{font-weight:700;letter-spacing:-.015em;font-size:1.05rem}
+.navbar{
+  position:sticky;top:0;z-index:50;margin-inline:-24px;padding-inline:24px;
+  background:rgba(251,248,244,.82);backdrop-filter:saturate(180%) blur(12px);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid transparent;transition:border-color .2s var(--ease),box-shadow .2s var(--ease);
+}
+.navbar.stuck{border-bottom-color:var(--line);box-shadow:0 1px 12px -6px rgba(26,21,18,.18)}
+nav{display:flex;align-items:center;gap:11px;padding-block:15px;max-width:1060px;margin-inline:auto}
+nav .logo{width:32px;height:32px;flex:none}
+nav b{font-weight:700;letter-spacing:-.015em;font-size:1.04rem}
 nav .sp{flex:1}
 .lnk{
   display:inline-flex;align-items:center;gap:7px;font-size:.92rem;font-weight:600;
-  color:var(--ink-2);text-decoration:none;padding:9px 16px;border-radius:999px;
-  border:1px solid var(--line);background:var(--surface);transition:.16s var(--ease);
+  color:var(--ink-2);text-decoration:none;padding:9px 14px;border-radius:999px;
+  transition:.16s var(--ease);
 }
-.lnk:hover{color:var(--ink);border-color:var(--line-2);box-shadow:var(--shadow-s)}
+.lnk:hover{color:var(--ink);background:var(--surface-2)}
+.btn.sm{padding:9px 18px;font-size:.92rem;box-shadow:0 1px 2px rgba(201,53,106,.2),0 6px 16px -10px rgba(201,53,106,.55)}
+.btn.sm:hover{transform:none;box-shadow:0 1px 3px rgba(201,53,106,.24),0 8px 20px -10px rgba(201,53,106,.7)}
+@media (max-width:520px){nav b{display:none}.lnk{display:none}}
 
 /* ---------- hero ---------- */
 header{padding-block:40px 30px;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:start}
@@ -204,8 +214,7 @@ footer{padding-block:30px 60px;border-top:1px solid var(--line);color:var(--ink-
   <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13l2.5 8v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5l2.5-8Z"/></symbol>
 </svg>
 
-<div class="wrap">
-
+<div class="navbar" id="navbar">
 <nav>
   <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
     <circle cx="50" cy="50" r="48" fill="#F4E9DC"/>
@@ -218,7 +227,11 @@ footer{padding-block:30px 60px;border-top:1px solid var(--line);color:var(--ink-
   <b>Budget Buddy</b>
   <span class="sp"></span>
   <a class="lnk" href="#how">How it works</a>
+  <a class="btn sm" href="https://discord.gg/5JdbxDpfhJ">Join Discord</a>
 </nav>
+</div>
+
+<div class="wrap">
 
 <header>
   <div>
@@ -349,6 +362,12 @@ const SERVICES = [
   { id:'spotify', name:'Spotify',         solo:12.99, plan:21.99, ways:6, note:'Family, 6 accounts',  hue:'#1DB954' },
   { id:'apple',   name:'Apple Music',     solo:10.99, plan:16.99, ways:6, note:'Family, 6 accounts',  hue:'#FA2E56' },
 ];
+/* Give the sticky bar an edge only once it's actually over content. */
+const navbar = document.getElementById('navbar');
+const onScroll = () => navbar.classList.toggle('stuck', window.scrollY > 8);
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
 const share   = s => s.plan / s.ways;
 const saving  = s => s.solo - share(s);
 const usd     = n => '$' + n.toFixed(2);
