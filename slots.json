@@ -1,0 +1,84 @@
+{
+  "generated": "2026-09-12T21:29:28.904Z",
+  "server": {
+    "name": "Budget Buddy",
+    "members": 59
+  },
+  "totals": {
+    "open": 0,
+    "offering": 0,
+    "seeking": 0
+  },
+  "services": [
+    {
+      "name": "Netflix",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Spotify",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "YouTube",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Disney+",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "HBO Max",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Prime",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Crunchyroll",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Apple Music",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "ExpressVPN",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "NordVPN",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Surfshark",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Hulu",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "Gaming",
+      "offering": 0,
+      "seeking": 0
+    },
+    {
+      "name": "AI",
+      "offering": 0,
+      "seeking": 0
+    }
+  ]
+}

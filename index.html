@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget Buddy — split the cost of family plans</title>
+<meta name="description" content="Find people to split Spotify Family, Netflix, YouTube Premium, VPNs and more. Plan holders invite you on as a member — logins and passwords never change hands.">
+<link rel="canonical" href="https://morebenk.github.io/budget-buddy/">
+<meta property="og:title" content="Budget Buddy — split the cost of family plans">
+<meta property="og:description" content="Find people to split subscription costs. Real family plan seats, no credential sharing.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --plum:#17101B; --plum-2:#211829; --plum-3:#2C2136;
+  --ink:#F4EDF3; --ink-2:#B9A9BE; --ink-3:#8A7A91;
+  --pink:#FF7FA8; --pink-deep:#E0578A; --gold:#FFD166;
+  --rule:#33263D; --ok:#6FD39B;
+  --wrap:1040px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--plum); color:var(--ink);
+  font-family:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding-inline:22px;
+}
+.wrap{max-width:var(--wrap); margin-inline:auto}
+a{color:var(--pink)}
+
+/* ---------- hero ---------- */
+header{padding-block:72px 52px; border-bottom:1px solid var(--rule)}
+.mark{display:flex; align-items:center; gap:12px; margin-bottom:34px}
+.mark svg{width:38px;height:38px;flex:none}
+.mark b{font-family:Figtree;font-weight:700;letter-spacing:-.01em;font-size:1.06rem}
+h1{
+  font-family:Fraunces,Georgia,serif; font-weight:600;
+  font-size:clamp(2.5rem,6.4vw,4.2rem); line-height:1.04; letter-spacing:-.02em;
+  margin:0 0 20px; text-wrap:balance; max-width:15ch;
+}
+h1 em{font-style:italic; color:var(--pink)}
+.lede{font-size:1.19rem; color:var(--ink-2); max-width:56ch; margin:0 0 32px; text-wrap:pretty}
+.cta{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+.btn{
+  display:inline-block; background:var(--pink); color:#2A0F1B; font-weight:700;
+  padding:13px 26px; border-radius:999px; text-decoration:none; font-size:1rem;
+  transition:transform .12s ease, background .12s ease;
+}
+.btn:hover{background:var(--gold); transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--rule); font-weight:600}
+.btn.ghost:hover{background:var(--plum-2); border-color:var(--pink)}
+.count{font-family:"JetBrains Mono",monospace; font-size:.86rem; color:var(--ink-3)}
+.count b{color:var(--ink)}
+
+/* ---------- live board ---------- */
+section{padding-block:58px; border-bottom:1px solid var(--rule)}
+h2{
+  font-family:Fraunces,Georgia,serif; font-weight:600; font-size:1.9rem;
+  letter-spacing:-.015em; margin:0 0 8px; text-wrap:balance;
+}
+.sub{color:var(--ink-2); margin:0 0 28px; max-width:58ch}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(168px,1fr)); gap:12px}
+.svc{
+  background:var(--plum-2); border:1px solid var(--rule); border-radius:12px;
+  padding:16px 16px 14px; display:flex; flex-direction:column; gap:2px;
+}
+.svc.has{border-color:var(--pink-deep); background:linear-gradient(180deg,#2B1A26,#211829)}
+.svc .n{font-weight:600; font-size:.96rem}
+.svc .v{font-family:"JetBrains Mono",monospace; font-size:1.5rem; line-height:1.2; color:var(--ink-3)}
+.svc.has .v{color:var(--pink)}
+.svc .m{font-size:.78rem; color:var(--ink-3)}
+.empty{
+  border:1px dashed var(--rule); border-radius:14px; padding:30px 26px;
+  background:var(--plum-2); text-align:center;
+}
+.empty p{margin:0 0 6px; color:var(--ink-2)}
+.empty .big{font-family:Fraunces,serif; font-size:1.35rem; color:var(--ink); margin-bottom:10px}
+
+/* ---------- steps ---------- */
+ol.steps{list-style:none; counter-reset:s; margin:0; padding:0; display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+ol.steps li{counter-increment:s; position:relative; padding-top:40px}
+ol.steps li::before{
+  content:counter(s); position:absolute; top:0; left:0;
+  font-family:"JetBrains Mono",monospace; font-size:.8rem; font-weight:500;
+  width:28px;height:28px; border-radius:50%; display:grid; place-items:center;
+  background:var(--plum-3); color:var(--pink); border:1px solid var(--rule);
+}
+ol.steps b{display:block; margin-bottom:4px; font-size:1.02rem}
+ol.steps span{color:var(--ink-2); font-size:.95rem}
+
+/* ---------- rule ---------- */
+.rule-box{border-left:3px solid var(--gold); background:var(--plum-2); border-radius:0 12px 12px 0; padding:22px 24px}
+.rule-box h3{margin:0 0 8px; font-size:1.05rem; color:var(--gold); font-weight:700}
+.rule-box p{margin:0 0 10px; color:var(--ink-2)}
+.rule-box p:last-child{margin:0}
+.rule-box strong{color:var(--ink)}
+
+footer{padding-block:34px 60px; color:var(--ink-3); font-size:.86rem; display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center}
+footer .mono{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:560px){
+  header{padding-block:48px 40px}
+  section{padding-block:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="48" fill="#241826"/>
+      <path d="M50 8a42 42 0 0 1 36.4 21L64.6 41.6A17 17 0 0 0 50 33z" fill="#FF7FA8"/>
+      <path d="M86.4 29a42 42 0 0 1 0 42L64.6 58.4a17 17 0 0 0 0-16.8z" fill="#6B4759"/>
+      <path d="M86.4 71A42 42 0 0 1 50 92V67a17 17 0 0 0 14.6-8.6z" fill="#6B4759"/>
+      <path d="M50 92A42 42 0 0 1 13.6 29L35.4 41.6a17 17 0 0 0 0 16.8L13.6 71A42 42 0 0 0 50 92z" fill="#6B4759"/>
+      <circle cx="50" cy="50" r="9" fill="#FFD166"/>
+    </svg>
+    <b>Budget Buddy</b>
+  </div>
+
+  <h1>Pay a <em>share</em>, not the whole subscription.</h1>
+  <p class="lede">
+    A small Discord community for finding people to split family and duo plans with —
+    Spotify, Netflix, YouTube, VPNs and more. The plan holder invites you on as a
+    member. Logins and passwords never change hands.
+  </p>
+  <div class="cta">
+    <a class="btn" href="https://discord.gg/5JdbxDpfhJ" id="join">Join the Discord</a>
+    <a class="btn ghost" href="#how">How it works</a>
+    <span class="count" id="headline">Loading the board…</span>
+  </div>
+</header>
+
+<section>
+  <h2>Open right now</h2>
+  <p class="sub">Straight from the server's listings board, refreshed automatically. No names or prices here — those stay inside the community.</p>
+  <div id="board"><div class="empty"><p>Loading…</p></div></div>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><b>Say what you want to split</b><span>Introduce yourself and pick the services you care about. You get pinged when a seat opens.</span></li>
+    <li><b>Browse the board</b><span>Every offer and request is one tagged post. Filter by service, or by what's still open.</span></li>
+    <li><b>Agree before money moves</b><span>Price per seat, renewal date, payment method. Check the other person's vouches first.</span></li>
+    <li><b>Vouch afterwards</b><span>Once a split has run a month, say so. That record is the only trust this community has.</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>The one rule that matters</h2>
+  <div class="rule-box">
+    <h3>We split plans. We never share logins.</h3>
+    <p>
+      A legitimate family or duo plan lets the holder <strong>invite you on as a member</strong>.
+      You get your own login, your own profile, your own library. Nobody hands over a password.
+    </p>
+    <p>
+      If someone asks for your password, or offers to sell you theirs, they are not splitting a
+      plan with you — they are handing over access to an account that holds their payment method
+      and personal data, or asking you to do the same. That is against our rules and it gets you
+      removed.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>Budget Buddy</span>
+  <span class="mono" id="updated">—</span>
+  <span class="mono" id="members">—</span>
+</footer>
+
+</div>
+
+<script>
+const nf = new Intl.NumberFormat();
+
+// Fail loudly rather than shipping a dead "Join" button if the invite was never set.
+(function guardInvite() {
+  const a = document.getElementById('join');
+  if (a.getAttribute('href') !== 'INVITE_URL') return;
+  a.removeAttribute('href');
+  a.textContent = 'Invite link not set yet';
+  a.style.cssText += 'background:#3A2B44;color:#B9A9BE;cursor:not-allowed';
+})();
+
+fetch('slots.json?' + Date.now())
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(render)
+  .catch(() => {
+    document.getElementById('headline').textContent = '';
+    document.getElementById('board').innerHTML =
+      '<div class="empty"><p class="big">The board is having a moment</p><p>Come straight to the Discord and look there instead.</p></div>';
+  });
+
+function render(d) {
+  const open = d.totals.open;
+
+  document.getElementById('headline').innerHTML = open
+    ? `<b>${nf.format(open)}</b> open ${open === 1 ? 'listing' : 'listings'} right now`
+    : `<b>${nf.format(d.server.members ?? 0)}</b> members`;
+
+  const withSlots = d.services.filter(s => s.offering + s.seeking > 0);
+  const board = document.getElementById('board');
+
+  if (!withSlots.length) {
+    board.innerHTML =
+      '<div class="empty">' +
+      '<p class="big">No seats open at this exact moment</p>' +
+      '<p>The board moves — listings archive themselves after three quiet days, so what you see is always current.</p>' +
+      '<p>Join and post what you are after; people get pinged for their services.</p>' +
+      '</div>';
+    return;
+  }
+
+  board.className = 'grid';
+  board.innerHTML = withSlots.map(s => {
+    const total = s.offering + s.seeking;
+    const parts = [];
+    if (s.offering) parts.push(`${s.offering} offering`);
+    if (s.seeking) parts.push(`${s.seeking} looking`);
+    return `<div class="svc has">
+      <span class="v">${total}</span>
+      <span class="n">${escapeHtml(s.name)}</span>
+      <span class="m">${parts.join(' · ')}</span>
+    </div>`;
+  }).join('');
+
+  const rest = d.services.length - withSlots.length;
+  if (rest > 0) {
+    board.insertAdjacentHTML('beforeend',
+      `<div class="svc"><span class="v">${rest}</span><span class="n">more services</span><span class="m">nothing open today</span></div>`);
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+fetch('slots.json?' + Date.now()).then(r => r.json()).then(d => {
+  const t = new Date(d.generated);
+  document.getElementById('updated').textContent =
+    'updated ' + t.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+  if (d.server.members) document.getElementById('members').textContent = d.server.members + ' members';
+}).catch(() => {});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+name: Refresh open slots
+
+# Every 3 hours, plus on demand. Discord is the source of truth; this just
+# publishes a count so the public page is never stale.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["export.ts", ".github/workflows/refresh.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-slots
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Export slots from Discord
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        run: bun export.ts
+
+      - name: Commit if the numbers changed
+        run: |
+          git config user.name  "budget-buddy-bot"
+          git config user.email "actions@users.noreply.github.com"
+          # `generated` changes every run; only commit when real data moved.
+          if git diff --quiet -I'"generated"' -- slots.json; then
+            echo "No change in open slots."
+            git checkout -- slots.json
+          else
+            git add slots.json
+            git commit -m "slots: refresh open counts"
+            git push
+          fi
