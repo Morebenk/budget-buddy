@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-04T06:30:17.085Z",
+  "generated": "2026-11-05T06:53:04.052Z",
   "server": {
     "name": "Budget Buddy",
     "members": 64
   },
   "totals": {
-    "open": 0,
-    "offering": 0,
+    "open": 1,
+    "offering": 1,
     "seeking": 0
   },
   "services": [
@@ -37,7 +37,7 @@
     },
     {
       "name": "Prime",
-      "offering": 0,
+      "offering": 1,
       "seeking": 0
     },
     {
